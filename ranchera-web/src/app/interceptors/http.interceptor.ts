@@ -17,9 +17,6 @@ export class HttpBasicInterceptor implements HttpInterceptor {
   constructor(private userService: UserService){}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if(!this.userService.isLogin())
-      return;
-
     const user: User = this.userService.get();
     if (user) {
       const token = btoa(`${user.primaryEmailAddr.address}:${user.employeeNumber}`);

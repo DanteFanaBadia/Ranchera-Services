@@ -17,6 +17,8 @@ import { RoutesComponent } from './pages/routes/routes.component';
 import { AuthorizationsComponent } from './pages/authorizations/authorizations.component';
 import { CustomersComponent } from './pages/customers/customers.component';
 import { HomeComponent } from './pages/home/home.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { HomeComponent } from './pages/home/home.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
-    DataTableModule
+    DataTableModule,
+    MatProgressBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpBasicInterceptor, multi: true }

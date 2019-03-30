@@ -3,6 +3,7 @@ import {UserService} from "./services/auth/user.service";
 import {User} from "./app.model";
 import {MatSnackBar} from "@angular/material";
 import {Title} from "@angular/platform-browser";
+import {GeneralService} from "./services/general/general.service";
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,14 @@ import {Title} from "@angular/platform-browser";
 export class AppComponent implements OnInit{
 
   isLogin = false;
+  isLoading = false;
   currentTitle = "Home";
   user: User;
 
   constructor(private userServices: UserService,
               private snackBar: MatSnackBar,
-              private titleService: Title) {}
+              private titleService: Title,
+              private general: GeneralService) {}
 
   ngOnInit(): void {
     if(this.userServices.isLogin())
@@ -25,6 +28,13 @@ export class AppComponent implements OnInit{
   }
 
   onLogin(user){
+    this.general
+      .watch()
+      .subscribe((b) => {
+        this.isLoading = b;
+        console.log(".............");
+      });
+
     this.isLogin = true;
     this.user = user;
     this.snackBar.open("Bienvenido","OK", {

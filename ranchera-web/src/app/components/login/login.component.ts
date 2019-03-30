@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       .login(this.login)
       .subscribe(
         (x) => this.onSuccess(x),
-        (x) => this.onError(x)
+        (error) => this.onError(error)
       );
   }
 
