@@ -1,1 +1,105 @@
-<router-outlet></router-outlet>
+<app-login *ngIf="!isLogin" (onLoginEvent)="onLogin($event)"></app-login>
+
+<div class="hold-transition skin-blue sidebar-mini" *ngIf="isLogin">
+  <div class="wrapper">
+    <header class="main-header">
+      <a href="/" class="logo">
+        <span class="logo-mini"><b>RS</b></span>
+        <span class="logo-lg"><b>Ranchera System</b></span>
+      </a>
+
+      <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li class="dropdown user user-menu">
+              <a href="#" (click)="logOut()" class="dropdown-toggle" data-toggle="dropdown">
+                <span class="hidden-xs">Cerrar Session</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <aside class="main-sidebar">
+      <section class="sidebar">
+        <div class="user-panel">
+          <div class="pull-left image">
+            <img src="assets/user.png" class="img-circle" alt="User Image">
+          </div>
+          <div class="pull-left info">
+            <p>{{ user.displayName }}</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          </div>
+        </div>
+        <ul class="sidebar-menu" data-widget="tree">
+          <li class="header">{{user.primaryEmailAddr.address}}</li>
+
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/home" (click)="setTitle('Home')">
+              <i class="fa fa-home"></i> <span>Home</span>
+            </a>
+          </li>
+
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/routes" (click)="setTitle('Rutas')">
+              <i class="fa fa-link"></i> <span>Rutas</span>
+            </a>
+          </li>
+
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/payments" (click)="setTitle('Historico de Pagos')">
+              <i class="fa fa-link"></i> <span>Historico de Pagos</span>
+            </a>
+          </li>
+
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/employees" (click)="setTitle('Vendedores')">
+              <i class="fa fa-link"></i> <span>Vendedores</span>
+            </a>
+          </li>
+
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/authorizations" (click)="setTitle('Autorizaciones')">
+              <i class="fa fa-link"></i> <span>Autorizaciones</span>
+            </a>
+          </li>
+
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/customers" (click)="setTitle('Clientes')">
+              <i class="fa fa-link"></i> <span>Clientes</span>
+            </a>
+          </li>
+
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a routerLink="/invoices" (click)="setTitle('Facturas')">
+              <i class="fa fa-link"></i> <span>Facturas</span>
+            </a>
+          </li>
+
+        </ul>
+      </section>
+    </aside>
+
+    <div class="content-wrapper">
+      <section class="content-header">
+        <h1>
+          {{currentTitle}}
+          <small></small>
+        </h1>
+      </section>
+
+      <section class="content container-fluid">
+        <router-outlet></router-outlet>
+      </section>
+    </div>
+
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2019 <a href="#">Raul, Natalia & asociados</a>.</strong>
+    </footer>
+    <div class="control-sidebar-bg"></div>
+  </div>
+</div>

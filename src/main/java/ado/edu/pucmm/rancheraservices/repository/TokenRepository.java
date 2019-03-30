@@ -9,6 +9,9 @@ import java.util.List;
 public interface TokenRepository extends CrudRepository<Token, Long> {
     @Query("SELECT t FROM Token t ORDER BY t.created desc")
     List<Token> getAllByCreate();
+
+    List<Token> findAllByOrderByCreatedDesc();
+
 }
 
 

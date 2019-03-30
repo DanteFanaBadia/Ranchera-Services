@@ -22,8 +22,8 @@ public class TokenController extends BaseController {
 
     private static final Logger logger = Logger.getLogger(TokenController.class);
 
-    @RequestMapping(value = "/tokens", method = RequestMethod.GET)
+    @RequestMapping(value = "/protected/tokens", method = RequestMethod.GET)
     public ResponseEntity<Iterable<Token>> get(){
-        return new ResponseEntity<>(tokenRepository.findAll(),HttpStatus.OK);
+        return new ResponseEntity<>(tokenRepository.findAllByOrderByCreatedDesc(),HttpStatus.OK);
     }
 }

@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.intuit.oauth2.config.OAuth2Config;
 import com.intuit.oauth2.config.Scope;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.swing.text.View;
 
 /**
  * @author dfana
@@ -47,7 +50,7 @@ public class AuthController extends BaseController {
 	}
 
 	@RequestMapping(value = "/oauth-2-redirect")
-	public ResponseEntity callBackFromOAuth(@RequestParam("code") String authCode,
+	public RedirectView callBackFromOAuth(@RequestParam("code") String authCode,
 								  @RequestParam("state") String state,
 								  @RequestParam(value = "realmId", required = false) String realmId) {
 		try {
@@ -56,19 +59,18 @@ public class AuthController extends BaseController {
 					.retrieveBearerTokens(authCode, getQbHelper().getAuth2PlatformClient().getPropertyValue("OAuth2AppRedirectUri"));
 			getQbHelper().getAuth2PlatformClient().setToken(bearerTokenResponse);
 			logger.info(bearerTokenResponse);
-			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (OAuthException e) {
 			logger.error("Exception in callback handler ", e);
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		return new RedirectView("http://localhost:4200/authorizations");
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ResponseEntity login(@RequestBody User user){
+	public ResponseEntity<Employee> login(@RequestBody User user){
 		try{
 			Employee employee = authenticationService.getEmployee(user.getUsername(), user.getPassword());
 			if(employee != null)
-				return new ResponseEntity(HttpStatus.OK);
+				return new ResponseEntity(employee, HttpStatus.OK);
 			else
 				return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}catch (Exception e){

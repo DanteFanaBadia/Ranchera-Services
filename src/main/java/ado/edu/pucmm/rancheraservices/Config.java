@@ -8,13 +8,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import java.util.List;
 
 @Configuration
-public class Config {
+@EnableWebMvc
+public class Config implements WebMvcConfigurer {
     private static final Logger log = LoggerFactory.getLogger(Config.class);
 
     private TokenRepository tokenRepository;
@@ -38,5 +44,10 @@ public class Config {
                     .getAuth2PlatformClient()
                     .setToken(localTokenToRemoteTokenConverter.convert(token));
         }
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
     }
 }

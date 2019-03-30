@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+          <thead>
+          </thead>
+          <tr>
+            <th>
+              <mfDefaultSorter by="id">Numero</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="displayName">Nombre</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="employeeNumber">Num. Empleado</mfDefaultSorter>
+            </th>
+            <th>Email</th>
+          </tr>
+          <tbody>
+          <tr *ngFor="let item of mf.data">
+            <td>{{item.id}}</td>
+            <td>{{item.displayName}}</td>
+            <td>{{item.employeeNumber}}</td>
+            <td>{{item.primaryEmailAddr?.address}}</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="4">
+              <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
