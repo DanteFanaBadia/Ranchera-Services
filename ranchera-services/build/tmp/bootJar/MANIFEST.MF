@@ -1,2 +1,5 @@
 Manifest-Version: 1.0
+Start-Class: ado.edu.pucmm.rancheraservices.RancheraServicesApplicatio
+ n
+Main-Class: org.springframework.boot.loader.JarLauncher
 

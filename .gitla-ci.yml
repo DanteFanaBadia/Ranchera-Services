@@ -1,0 +1,14 @@
+stages:
+  - publish
+
+publish:image:
+  stage: publish
+  image: docker:latest
+  services:
+    - name: docker:dind
+  script:
+    - export IMAGE_TAG=$(echo -en $CI_COMMIT_REF_NAME | tr -c '[:alnum:].-' '-')
+    - set -- $CI_JOB_NAME
+    - docker login "$CI_REGISTRY" -u gitlab-ci-token -p "$CI_JOB_TOKEN"
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$IMAGE_TAG" .
+    - docker push "$CI_REGISTRY_IMAGE:$IMAGE_TAG"
