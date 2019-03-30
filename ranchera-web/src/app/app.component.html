@@ -38,46 +38,46 @@
           </div>
         </div>
         <ul class="sidebar-menu" data-widget="tree">
-          <li class="header">{{user.primaryEmailAddr.address}}</li>
+          <li class="header">{{user.primaryEmailAddr?.address}}</li>
 
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/home" (click)="setTitle('Home')">
+            <a routerLink="/home">
               <i class="fa fa-home"></i> <span>Home</span>
             </a>
           </li>
 
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/routes" (click)="setTitle('Rutas')">
+            <a routerLink="/routes" >
               <i class="fa fa-link"></i> <span>Rutas</span>
             </a>
           </li>
 
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/payments" (click)="setTitle('Historico de Pagos')">
+            <a routerLink="/payments" >
               <i class="fa fa-link"></i> <span>Historico de Pagos</span>
             </a>
           </li>
 
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/employees" (click)="setTitle('Vendedores')">
+            <a routerLink="/employees" >
               <i class="fa fa-link"></i> <span>Vendedores</span>
             </a>
           </li>
 
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/authorizations" (click)="setTitle('Autorizaciones')">
+            <a routerLink="/authorizations" >
               <i class="fa fa-link"></i> <span>Autorizaciones</span>
             </a>
           </li>
 
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/customers" (click)="setTitle('Clientes')">
+            <a routerLink="/customers" >
               <i class="fa fa-link"></i> <span>Clientes</span>
             </a>
           </li>
 
           <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-            <a routerLink="/invoices" (click)="setTitle('Facturas')">
+            <a routerLink="/invoices" >
               <i class="fa fa-link"></i> <span>Facturas</span>
             </a>
           </li>
@@ -87,12 +87,7 @@
     </aside>
 
     <div class="content-wrapper">
-      <section class="content-header">
-        <h1>
-          {{currentTitle}}
-          <small></small>
-        </h1>
-      </section>
+      <section class="content-header"></section>
 
       <section class="content container-fluid">
         <router-outlet></router-outlet>
@@ -102,6 +97,5 @@
     <footer class="main-footer">
       <strong>Copyright &copy; 2019 <a href="#">Raul, Natalia & asociados</a>.</strong>
     </footer>
-    <div class="control-sidebar-bg"></div>
   </div>
 </div>

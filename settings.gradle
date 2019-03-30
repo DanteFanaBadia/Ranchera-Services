@@ -12,4 +12,7 @@ pluginManagement {
 		}
 	}
 }
-rootProject.name = 'ranchera-service'
+rootProject.name = 'ranchera'
+
+include 'ranchera-web', 'ranchera-services'
+

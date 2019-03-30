@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ChangeDetectorRef, AfterContentChecked} from '@angular/core';
 import {UserService} from "./services/auth/user.service";
 import {User} from "./app.model";
 import {MatSnackBar} from "@angular/material";
@@ -10,30 +10,31 @@ import {GeneralService} from "./services/general/general.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements AfterViewInit, AfterContentChecked{
 
   isLogin = false;
   isLoading = false;
-  currentTitle = "Home";
   user: User;
 
   constructor(private userServices: UserService,
               private snackBar: MatSnackBar,
               private titleService: Title,
-              private general: GeneralService) {}
+              private general: GeneralService,
+              private changeDetector: ChangeDetectorRef) {}
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
     if(this.userServices.isLogin())
       this.onLogin(this.userServices.load());
+  }
+
+  ngAfterViewChecked(){
+    this.changeDetector.detectChanges();
   }
 
   onLogin(user){
     this.general
       .watch()
-      .subscribe((b) => {
-        this.isLoading = b;
-        console.log(".............");
-      });
+      .subscribe((b) => this.isLoading = b);
 
     this.isLogin = true;
     this.user = user;
@@ -43,15 +44,12 @@ export class AppComponent implements OnInit{
     });
   }
 
-  public setTitle( newTitle: string) {
-    this.currentTitle = newTitle;
-    this.titleService.setTitle( newTitle );
-  }
-
-
   public logOut(){
     this.userServices.logOut();
     this.user = null;
     this.isLogin = false;
+  }
+
+  ngAfterContentChecked(): void {
   }
 }

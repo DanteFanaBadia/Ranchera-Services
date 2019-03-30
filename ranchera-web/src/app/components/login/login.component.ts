@@ -1,15 +1,24 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  OnInit,
+  Output
+} from '@angular/core';
 import {UserService} from "../../services/auth/user.service";
 import {LoginForm, User} from "../../app.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from '@angular/material';
+import {GeneralService} from "../../services/general/general.service";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterContentChecked{
 
   @Output() onLoginEvent = new EventEmitter<User>();
   submitted = false;
@@ -18,7 +27,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService,
               private fb: FormBuilder,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private changeDetector: ChangeDetectorRef) {
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -62,5 +72,10 @@ export class LoginComponent implements OnInit {
   onSuccess(user: User){
     this.onLoginEvent.emit(user);
   }
+
+  ngAfterContentChecked(): void {
+    this.changeDetector.detectChanges();
+  }
+
 
 }

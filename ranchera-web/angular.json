@@ -42,9 +42,7 @@
               "node_modules/admin-lte/dist/js/adminlte.js",
               "node_modules/jquery-sparkline/jquery.sparkline.js",
               "node_modules/jvectormap/jquery-jvectormap.js",
-              "node_modules/jvectormap/jquery-mousewheel.js",
-              "node_modules/slimscroll/lib/slimscroll.js",
-              "node_modules/chart.js/Chart.js"
+              "node_modules/jvectormap/jquery-mousewheel.js"
             ]
           },
           "configurations": {
