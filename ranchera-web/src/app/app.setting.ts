@@ -1,6 +1,6 @@
 
 export class Setting{
-  public static endpoint = "http://localhost";
+  public static endpoint = "http://ranchera.dfb.com.do";
 
   public static login (){ return `${Setting.endpoint}/login`;}
   public static invoices(){return `${Setting.endpoint}/protected/invoices`;}
