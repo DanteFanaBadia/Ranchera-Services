@@ -1,5 +1,6 @@
 stages:
   - publish
+  - deploy
 
 publish:image:
   stage: publish
@@ -12,3 +13,14 @@ publish:image:
     - docker login "$CI_REGISTRY" -u gitlab-ci-token -p "$CI_JOB_TOKEN"
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$IMAGE_TAG" .
     - docker push "$CI_REGISTRY_IMAGE:$IMAGE_TAG"
+
+deploy:image:
+  stage: deploy
+  tags:
+    - ssh
+  services:
+    - name: docker:dind
+  script:
+    - echo "Deploy image $IMAGE_TAG"
+    - cd /root/Ranchera-Services
+    - docker-compose up -d

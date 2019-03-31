@@ -1,8 +1,10 @@
 version: '3'
 services:
-  service:
+  app:
     container_name: ranchera-app
     image: registry.gitlab.com/dantefanabadia/ranchera-app:develop
     ports:
       - "80:80"
     restart: always
+    volumes:
+      - ~/:~/
