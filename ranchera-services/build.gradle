@@ -21,10 +21,9 @@ processResources {
 	}
 }
 
-
 bootJar {
 	archiveName = "ranchera-app.jar"
-	mainClassName = 'ado.edu.pucmm.rancheraservices.RancheraServicesApplication'
+	mainClassName = 'ado.edu.pucmm.rancheraservices.RanchServicesApplication'
 
 	from('../ranchera-web/dist/ranchera-web') {
 		into 'static'
@@ -33,12 +32,11 @@ bootJar {
 
 dependencies {
 	
-	//sprint boot library
+	//spring boot library
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.data:spring-data-rest-webmvc'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
 
 	implementation(project(':ranchera-web'))
 
