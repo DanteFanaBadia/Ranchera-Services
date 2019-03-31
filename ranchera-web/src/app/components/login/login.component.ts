@@ -77,5 +77,4 @@ export class LoginComponent implements OnInit, AfterContentChecked{
     this.changeDetector.detectChanges();
   }
 
-
 }

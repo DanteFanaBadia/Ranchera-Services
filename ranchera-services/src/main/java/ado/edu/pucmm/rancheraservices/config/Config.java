@@ -29,6 +29,16 @@ public class Config implements WebMvcConfigurer {
             "classpath:/public/"
     };
 
+    private String banner = "" +
+            " _______                            __         ______                   _                       \n" +
+            "|_   __ \\                          [  |      .' ____ \\                 / |_                     \n" +
+            "  | |__) |   ,--.   _ .--.   .---.  | |--.   | (___ \\_|  _   __  .--. `| |-'.---.  _ .--..--.   \n" +
+            "  |  __ /   `'_\\ : [ `.-. | / /'`\\] | .-. |   _.____`.  [ \\ [  ]( (`\\] | | / /__\\\\[ `.-. .-. |  \n" +
+            " _| |  \\ \\_ // | |, | | | | | \\__.  | | | |  | \\____) |  \\ '/ /  `'.'. | |,| \\__., | | | | | |  \n" +
+            "|____| |___|\\'-;__/[___||__]'.___.'[___]|__]  \\______.'[\\_:  /  [\\__) )\\__/ '.__.'[___||__||__] \n" +
+            "                                                        \\__.' " +
+            "";
+
     private TokenRepository tokenRepository;
     private QBOServiceHelper qboServiceHelper;
     private LocalTokenToRemoteTokenConverter localTokenToRemoteTokenConverter;
@@ -43,6 +53,8 @@ public class Config implements WebMvcConfigurer {
 
     @EventListener(ApplicationReadyEvent.class)
     public void start() {
+        System.out.println(banner);
+        System.out.println("¯\\_(ツ)_/¯ ---> ʕノ•ᴥ•ʔノ ︵ ┻━┻\n");
         List<Token> tokenList = this.tokenRepository.getAllByCreate();
         if(tokenList.size() >= 1){
             Token token = tokenList.get(0);

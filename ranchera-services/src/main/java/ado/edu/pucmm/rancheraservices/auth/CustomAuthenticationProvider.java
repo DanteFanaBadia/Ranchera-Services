@@ -1,6 +1,5 @@
 package ado.edu.pucmm.rancheraservices.auth;
 
-import ado.edu.pucmm.rancheraservices.helper.QBOServiceHelper;
 import ado.edu.pucmm.rancheraservices.service.AuthenticationService;
 import com.intuit.ipp.data.Employee;
 import org.springframework.beans.factory.annotation.Autowired;

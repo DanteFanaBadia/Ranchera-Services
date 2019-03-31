@@ -11,5 +11,4 @@ node {
 
 jar.dependsOn 'npm_run_build'
 
-jar {
-}
+jar {}

@@ -21,10 +21,10 @@
           </tr>
           <tbody>
           <tr *ngFor="let item of mf.data">
-            <td>{{item.txnDate}}</td>
+            <td>{{item.txnDate | date: 'yyyy-MM-dd'}}</td>
             <td>{{item.id}}</td>
             <td>{{item.customerRef.name}}</td>
-            <td>{{item.totalAmt}}</td>
+            <td>{{item.totalAmt | number }}</td>
           </tr>
           </tbody>
           <tfoot>
