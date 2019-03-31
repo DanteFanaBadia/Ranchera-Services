@@ -16,7 +16,7 @@ public class AuthenticationService {
     public Employee getEmployee(String username, String password){
         String query = "select * from employee";
 
-        List<Employee> employees = (List<Employee>) helper.executeSQL(query);
+        List<Employee> employees = (List<Employee>) helper.getEntities(query);
 
         Employee employee = employees.stream()
                 .filter(x -> password.equals(x.getEmployeeNumber())

@@ -739,6 +739,27 @@ export interface Customer {
   araccountRef?: any;
 }
 
-export interface Route{
 
+export interface Stop {
+  id?: number;
+  priority: number;
+  client: number;
+  name: string;
+  address: string;
+}
+
+export interface Route {
+  id?: number;
+  user?: number;
+  name?: string;
+  stops?: Stop[];
+}
+
+export interface Dashboard{
+  clientsCount?: number;
+  invoicesCount?: number;
+  paymentNumber?: number;
+  lastedOrders?: Invoice[];
+  lastedPayments?: Payment[];
+  lastedClients?: Customer[];
 }

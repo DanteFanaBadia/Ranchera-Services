@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
@@ -18,6 +18,9 @@ import { AuthorizationsComponent } from './pages/authorizations/authorizations.c
 import { CustomersComponent } from './pages/customers/customers.component';
 import { HomeComponent } from './pages/home/home.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { RouteComponent } from './pages/route/route.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from "@angular/material";
 
 
 @NgModule({
@@ -30,7 +33,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     RoutesComponent,
     AuthorizationsComponent,
     CustomersComponent,
-    HomeComponent
+    HomeComponent,
+    RouteComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -40,7 +44,10 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     HttpClientModule,
     MatSnackBarModule,
     DataTableModule,
-    MatProgressBarModule
+    FormsModule,
+    MatProgressBarModule,
+    MatAutocompleteModule,
+    MatFormFieldModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpBasicInterceptor, multi: true }

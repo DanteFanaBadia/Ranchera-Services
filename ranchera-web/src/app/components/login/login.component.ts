@@ -24,11 +24,13 @@ export class LoginComponent implements OnInit, AfterContentChecked{
   submitted = false;
   login: LoginForm = {};
   form: FormGroup;
+  isLoading = false;
 
   constructor(private userService: UserService,
               private fb: FormBuilder,
               private snackBar: MatSnackBar,
-              private changeDetector: ChangeDetectorRef) {
+              private changeDetector: ChangeDetectorRef,
+              private general: GeneralService) {
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -37,7 +39,11 @@ export class LoginComponent implements OnInit, AfterContentChecked{
 
   get f() { return this.form.controls; }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.general
+      .watch()
+      .subscribe((b) => this.isLoading = b);
+  }
 
   onSubmit() {
     this.submitted = true;

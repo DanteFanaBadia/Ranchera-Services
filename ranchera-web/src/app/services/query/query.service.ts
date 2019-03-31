@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable, pipe} from "rxjs";
 import {Setting} from "../../app.setting";
-import {Authorization, Customer, Employee, Invoice, Payment, Route} from "../../app.model";
+import {Authorization, Customer, Dashboard, Employee, Invoice, Payment, Route} from "../../app.model";
 import {GeneralService} from "../general/general.service";
 import {tap} from "rxjs/operators";
 
@@ -61,6 +61,14 @@ export class QueryService {
     return this.http.get<Route[]>(Setting.routes()).
     pipe(
       tap(x => this.general.desActiveLoading())
-    );;
+    );
+  }
+
+  public getDashboard(): Observable<Dashboard>{
+    this.general.activeLoading();
+    return this.http.get<Dashboard>(Setting.dashboard()).
+    pipe(
+      tap(x => this.general.desActiveLoading())
+    );
   }
 }

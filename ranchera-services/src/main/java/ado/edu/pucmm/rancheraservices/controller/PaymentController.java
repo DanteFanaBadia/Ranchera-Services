@@ -21,7 +21,7 @@ public class PaymentController extends BaseController {
     @RequestMapping(value = "/protected/payments", method = RequestMethod.GET)
     public ResponseEntity<List<Payment>> get(){
         String query = "Select * From Payment";
-        return new ResponseEntity<>((List<Payment>)getQbHelper().executeSQL(query), HttpStatus.OK);
+        return new ResponseEntity<>((List<Payment>)getQbHelper().getEntities(query), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/protected/payments", method = RequestMethod.POST)

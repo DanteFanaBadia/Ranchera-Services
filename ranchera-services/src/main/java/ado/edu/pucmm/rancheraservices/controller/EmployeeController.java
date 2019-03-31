@@ -19,6 +19,6 @@ public class EmployeeController extends BaseController {
     @RequestMapping(value = "/protected/employees", method = RequestMethod.GET)
     public ResponseEntity<List<Employee>> get(){
         String query = "Select * From Employee";
-        return new ResponseEntity<>((List<Employee>)getQbHelper().executeSQL(query), HttpStatus.OK);
+        return new ResponseEntity<>((List<Employee>)getQbHelper().getEntities(query), HttpStatus.OK);
     }
 }

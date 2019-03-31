@@ -18,6 +18,6 @@ public class CustomerController extends BaseController {
 
     @RequestMapping(value = "/protected/customers", method = RequestMethod.GET)
     public ResponseEntity<List<Customer>> get(){
-        return new ResponseEntity<>((List<Customer>)getQbHelper().executeSQL("select * from customer"),HttpStatus.OK);
+        return new ResponseEntity<>((List<Customer>)getQbHelper().getEntities("select * from customer"),HttpStatus.OK);
     }
 }

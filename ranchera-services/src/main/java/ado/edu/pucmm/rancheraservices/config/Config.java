@@ -37,7 +37,7 @@ public class Config implements WebMvcConfigurer {
             " _| |  \\ \\_ // | |, | | | | | \\__.  | | | |  | \\____) |  \\ '/ /  `'.'. | |,| \\__., | | | | | |  \n" +
             "|____| |___|\\'-;__/[___||__]'.___.'[___]|__]  \\______.'[\\_:  /  [\\__) )\\__/ '.__.'[___||__||__] \n" +
             "                                                        \\__.' " +
-            "";
+            "\nʕノ•ᴥ•ʔノ ︵ ┻━┻";
 
     private TokenRepository tokenRepository;
     private QBOServiceHelper qboServiceHelper;
@@ -54,7 +54,6 @@ public class Config implements WebMvcConfigurer {
     @EventListener(ApplicationReadyEvent.class)
     public void start() {
         System.out.println(banner);
-        System.out.println("¯\\_(ツ)_/¯ ---> ʕノ•ᴥ•ʔノ ︵ ┻━┻\n");
         List<Token> tokenList = this.tokenRepository.getAllByCreate();
         if(tokenList.size() >= 1){
             Token token = tokenList.get(0);

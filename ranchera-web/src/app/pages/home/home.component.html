@@ -1,51 +1,94 @@
 <div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-body table-responsive no-padding">
-        <table class="table table-hover" [mfData]="[]" #mf="mfDataTable" [mfRowsOnPage]="5">
-          <thead>
-            <tr>
-              <th colspan="4">
-                <div class="input-group input-group-sm" style="width: 300px;">
-                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-                  <div class="input-group-btn">
-                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                  </div>
-                </div>
-              </th>
-            </tr>
-          </thead>
-          <tr>
-            <th>
-              <mfDefaultSorter by="name">Name</mfDefaultSorter>
-            </th>
-            <th>
-              <mfDefaultSorter by="email">Email</mfDefaultSorter>
-            </th>
-            <th>
-              <mfDefaultSorter by="age">Age</mfDefaultSorter>
-            </th>
-            <th>
-              <mfDefaultSorter by="city">City</mfDefaultSorter>
-            </th>
-          </tr>
-          <tbody>
-            <tr *ngFor="let item of mf.data">
-              <td>{{item.name}}</td>
-              <td>{{item.email}}</td>
-              <td class="text-right">{{item.age}}</td>
-              <td>{{item.city | uppercase}}</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4">
-                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
+
+  <div class="col-md-4 col-sm-12 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-red"><i class="fa fa-money"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Pagos</span>
+        <span class="info-box-number">{{data.paymentNumber}}</span>
       </div>
     </div>
   </div>
+
+  <div class="col-md-4 col-sm-12 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Ordenes</span>
+        <span class="info-box-number">{{data.invoicesCount}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 col-sm-12 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-text">Clientes</span>
+        <span class="info-box-number">{{data.clientsCount}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-sm-12 col-xs-12">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">Ultimas ordenes</h3>
+      </div>
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table no-margin">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Numero</th>
+                <th>Cliente</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of data.lastedOrders">
+                <td>{{item.txnDate | date: 'yyyy-MM-dd'}}</td>
+                <td>{{item.id}}</td>
+                <td>{{item.customerRef.name}}</td>
+                <td>{{item.totalAmt | number }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="box-footer clearfix">
+        <a routerLink="/invoices" class="btn btn-sm btn-default btn-flat pull-right">Ver todas las ordenes</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-sm-12 col-xs-12">
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title">Ultimos pagos</h3>
+      </div>
+      <div class="box-body">
+        <ul class="products-list product-list-in-box">
+          <li class="item" *ngFor="let item of data.lastedPayments">
+            <div class="product-info" style="margin-left:5px;">
+              <span class="product-title" >
+                Pago: {{item.id}}
+                <span class="label label-success pull-right">{{item.totalAmt | number   }}</span>
+              </span>
+              <span class="product-description">
+                {{item.customerRef.name}} / {{item.txnDate | date: 'yyyy-MM-dd'}}
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="box-footer text-center">
+        <a routerLink="/payments" class="uppercase">Ver todos los pagos</a>
+      </div>
+    </div>
+  </div>
+
 </div>

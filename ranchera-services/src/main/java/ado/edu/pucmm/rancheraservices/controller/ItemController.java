@@ -18,6 +18,6 @@ public class ItemController extends BaseController {
 
     @RequestMapping(value = "/protected/items", method = RequestMethod.GET)
     public ResponseEntity<List<Item>> get(){
-        return new ResponseEntity<>((List<Item>)getQbHelper().executeSQL("select * from item"),HttpStatus.OK);
+        return new ResponseEntity<>((List<Item>)getQbHelper().getEntities("select * from item"),HttpStatus.OK);
     }
 }

@@ -1,3 +1,42 @@
-<p>
-  routes works!
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10">
+          <thead>
+          <tr>
+            <th colspan="4">
+              <button class="btn btn-primary" routerLink="/routes/add">Crear una nueva ruta</button>
+            </th>
+          </tr>
+          </thead>
+          <tr>
+            <th>
+              <mfDefaultSorter by="id">Numero</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="created">Vendedor</mfDefaultSorter>
+            </th>
+            <th>
+              <mfDefaultSorter by="tokenType">#Paradas</mfDefaultSorter>
+            </th>
+          </tr>
+          <tbody>
+          <tr *ngFor="let item of mf.data">
+            <td>{{item.id}}</td>
+            <td>{{item.name }}</td>
+            <td>{{item?.stops?.length }}</td>
+          </tr>
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="4">
+              <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

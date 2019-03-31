@@ -1,0 +1,64 @@
+<div class="box box-warning">
+  <div class="box-header with-border">
+    <h3 class="box-title">Crear/Editar Ruta</h3>
+  </div>
+  <div class="box-body">
+      <div class="form-group">
+        <label>Vendedor</label>
+
+        <input matInput aria-label="employee"
+               type="text"
+               class="form-control"
+               placeholder="Escribir el nombre de un vendedor..."
+               [matAutocomplete]="autoEmployee"
+               [formControl]="employeeAuto"
+               [(ngModel)]="route.name">
+
+        <mat-autocomplete #autoEmployee="matAutocomplete"
+          (optionSelected)="onSelectedEmployee($event)">
+          <mat-option *ngFor="let employee of filteredEmployee | async" [value]="employee.id">
+            <span>{{employee.displayName}}</span>,
+            <small> Email: {{employee?.primaryEmailAddr?.address}}</small>,
+            <small> Numero Empleado: {{employee?.employeeNumber}}</small>
+          </mat-option>
+        </mat-autocomplete>
+      </div>
+      <div class="form-group">
+        <label>Clientes</label>
+
+        <input matInput aria-label="State"
+               type="text"
+               class="form-control"
+               placeholder="Escribe el nombre de un cliente..."
+               [matAutocomplete]="autoClient"
+               [formControl]="customerAuto">
+
+        <mat-autocomplete
+          #autoClient="matAutocomplete"
+          (optionSelected)="onSelectedCustomer($event)">
+          <mat-option *ngFor="let customer of filteredCustomer | async" [value]="customer.id">
+            <span>{{customer.displayName}}</span> ,
+            <small>Numero: {{customer?.id}}</small>
+          </mat-option>
+        </mat-autocomplete>
+
+        <table class="table">
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Prioridad</th>
+          </tr>
+          <tr *ngFor="let item of route.stops">
+            <td>{{item.client}}</td>
+            <td>{{item.name}}</td>
+            <td>
+              <input type="text" class="form-control" [value]="item.priority" [(ngModel)]="item.priority">
+            </td>
+          </tr>
+        </table>
+      </div>
+  </div>
+  <div class="box-footer">
+    <button type="button" (click)="save()" class="btn btn-primary">Guardar Ruta</button>
+  </div>
+</div>

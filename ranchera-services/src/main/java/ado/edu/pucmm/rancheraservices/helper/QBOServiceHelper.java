@@ -116,14 +116,26 @@ public class QBOServiceHelper {
 		return null;
 	}
 
-	public Object executeSQL(String sql){
+	public Object getEntities(String sql){
+		QueryResult queryResult = null;
+		try {
+			queryResult = getDataServices().executeQuery(sql);
+		} catch (FMSException e) {
+			logger.error("Exception getEntities", e);
+		}
+		return queryResult.getEntities();
+	}
+
+	public QueryResult executeSQL(String sql){
 		QueryResult queryResult = null;
 		try {
 			queryResult = getDataServices().executeQuery(sql);
 		} catch (FMSException e) {
 			logger.error("Exception executeSQL", e);
 		}
-		return queryResult.getEntities();
+		return queryResult;
 	}
+
+
 
 }

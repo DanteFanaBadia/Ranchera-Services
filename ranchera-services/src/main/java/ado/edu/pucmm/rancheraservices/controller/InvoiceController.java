@@ -20,7 +20,7 @@ public class InvoiceController extends BaseController {
 
     @RequestMapping(value = "/protected/invoices", method = RequestMethod.GET)
     public ResponseEntity<List<Invoice>> get(){
-        return new ResponseEntity<>((List<Invoice>)getQbHelper().executeSQL("select * from invoice"),HttpStatus.OK);
+        return new ResponseEntity<>((List<Invoice>)getQbHelper().getEntities("select * from invoice"),HttpStatus.OK);
     }
 
     @RequestMapping(value = "/protected/invoices", method = RequestMethod.POST)

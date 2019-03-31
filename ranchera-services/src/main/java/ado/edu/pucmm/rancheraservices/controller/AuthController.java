@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ado.edu.pucmm.rancheraservices.controller.base.BaseController;
-import ado.edu.pucmm.rancheraservices.domain.User;
+import ado.edu.pucmm.rancheraservices.dto.User;
 import ado.edu.pucmm.rancheraservices.service.AuthenticationService;
 import com.intuit.ipp.data.Employee;
 import com.intuit.oauth2.client.OAuth2PlatformClient;
@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import com.intuit.oauth2.config.OAuth2Config;
 import com.intuit.oauth2.config.Scope;
 import org.springframework.web.servlet.view.RedirectView;
-
-import javax.swing.text.View;
 
 /**
  * @author dfana

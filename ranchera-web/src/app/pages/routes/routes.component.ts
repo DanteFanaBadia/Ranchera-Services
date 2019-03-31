@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Route} from "../../app.model";
+import {QueryService} from "../../services/query/query.service";
 
 @Component({
   selector: 'app-routes',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoutesComponent implements OnInit {
 
-  constructor() { }
+  data: Route[] = [];
+
+  constructor(private queryService: QueryService) { }
 
   ngOnInit() {
+    this.queryService.getRoutes()
+      .subscribe(data => this.data = data);
   }
-
 }

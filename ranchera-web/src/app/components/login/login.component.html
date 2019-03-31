@@ -19,9 +19,9 @@
           </p>
         </div>
         <div class="row">
-          <div class="col-xs-4">
+          <div class="col-12">
             <br/>
-            <button type="submit" class="btn btn-primary btn-block btn-flat" (click)="onSubmit()">Inicia sesión</button>
+            <button type="submit" [disabled]="isLoading" class="btn btn-primary btn-block btn-flat" (click)="onSubmit()">Inicia sesión</button>
           </div>
         </div>
       </form>

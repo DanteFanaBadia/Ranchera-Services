@@ -1,4 +1,4 @@
-package ado.edu.pucmm.rancheraservices.domain;
+package ado.edu.pucmm.rancheraservices.dto;
 
 public class User {
     private String username;

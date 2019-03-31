@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Customer, Payment} from "../../app.model";
+import {Customer} from "../../app.model";
 import {QueryService} from "../../services/query/query.service";
 
 @Component({
@@ -17,6 +17,4 @@ export class CustomersComponent implements OnInit {
     this.queryService.getCustomers()
       .subscribe(data => this.data = data);
   }
-
-
 }
