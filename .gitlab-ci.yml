@@ -23,7 +23,7 @@ deploy:image:
   script:
     - echo "Deploy image $IMAGE_TAG"
     - cd /root/Ranchera-Services
-    - docker stop $(docker ps -a -q)
-    - docker rm $(docker ps -a -q)
-    - docker rmi $(docker images -a -q)
+    - docker stop $(docker ps -a -q) 2>/dev/null || true
+    - docker rm $(docker ps -a -q) 2>/dev/null || true
+    - docker rmi $(docker images -a -q) 2>/dev/null || true
     - docker-compose up -d
